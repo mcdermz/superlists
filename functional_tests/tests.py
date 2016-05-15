@@ -62,7 +62,6 @@ class NewVisitorTest(LiveServerTestCase):
 		self.check_for_row_in_list_table('1: Buy peacock feathers')
 		self.check_for_row_in_list_table('2: Use peacock feathers to make a fly')
 		
-		self.fail('Finish the test!')
 		
 		# Now a new user, Francis, comes along to the site.
 		
@@ -75,8 +74,8 @@ class NewVisitorTest(LiveServerTestCase):
 		# Francis visits the home page, there is no sign of Edith's list.
 		self.browser.get(self.live_server_url)
 		page_text = self.browser.find_element_by_tag_name('body').text
-		self.assertIn('Buy peacock feathers', page_text)
-		self.assertIn('make a fly', page_text)
+		self.assertNotIn('Buy peacock feathers', page_text)
+		self.assertNotIn('make a fly', page_text)
 		
 		
 		# Francis starts a new list by entering a new item.
@@ -97,4 +96,4 @@ class NewVisitorTest(LiveServerTestCase):
 		self.assertIn('Buy milk', page_text)
 		
 		# Satisfied, they both go back to sleep
-
+		self.fail('Finish the test!')
