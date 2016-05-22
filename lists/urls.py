@@ -13,10 +13,9 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import include, url
+from django.conf.urls import url
 #from django.contrib import admin
-from lists import views as list_views
-from lists import urls as list_urls
+from lists import views
 
 
 ''' 
@@ -24,7 +23,7 @@ from lists import urls as list_urls
     In Django 1.8 the 2nd argument must be passed as a string
 '''
 urlpatterns = [
-    url(r'^$', list_views.home_page, name='home'),
-    url(r'^lists/', include(list_urls)),
-    #url(r'^admin/', admin.site.urls),
+    url(r'^new$', views.new_list, name='new_list'),
+    url(r'^(\d+)/$', views.view_list, name='view_list'),
+    url(r'^(\d+)/add_item$', views.add_item, name='add_item'),
 ]
